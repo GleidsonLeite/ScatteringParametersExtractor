@@ -1,3 +1,4 @@
+from typing import Literal
 from PySpice.Spice.Netlist import SubCircuit
 
 from modules.scattering.entities.ScatteringParameters import ScatteringParamers
@@ -21,6 +22,10 @@ class ExtractScatteringParametersUseCase:
         circuit_title: str = "ScatteringWithInputDrived",
         input_drived_sub_circuit_name: str = "InputDrivedSubCircuit",
         output_sub_circuit_name: str = "OutputDrivedCircuit",
+        simulation_start_frequency: float = 1,
+        simulation_stop_frequency: float = 2.45e9,
+        simulation_variation: Literal["dec", "oct", "lin"] = "lin",
+        number_of_points_of_simulation: int = 10,
     ) -> ScatteringParamers:
         scattering_parameters = ScatteringParamers()
 
@@ -49,10 +54,10 @@ class ExtractScatteringParametersUseCase:
             simulate_ac_usecase = SimulateACUseCase(simulator=circuit_simulator)
 
             analysis = simulate_ac_usecase.execute(
-                start_frequency=20e9,
-                stop_frequency=30e9,
-                number_of_points=10,
-                variation="dec",
+                start_frequency=simulation_start_frequency,
+                stop_frequency=simulation_stop_frequency,
+                number_of_points=number_of_points_of_simulation,
+                variation=simulation_variation,
             )
 
             input_response = analysis[input_point_name].as_ndarray()
