@@ -1,9 +1,11 @@
 from typing import Literal
 from PySpice.Spice.Netlist import SubCircuit
 
-from modules.scattering.entities.ScatteringParameters import ScatteringParamers
 from modules.scattering.useCases.DriveCircuitToGetSParametersUseCase import (
     DriveCircuitToGetSParametersUseCase,
+)
+from modules.scattering.useCases.ExtractScatteringParametersUseCase.ScatteringParameters import (
+    ScatteringParamers,
 )
 from modules.simulator.UseCases.DestroyNGSharedInstanceUseCase import (
     DestroyNGSharedInstanceUseCase,
@@ -24,8 +26,8 @@ class ExtractScatteringParametersUseCase:
         output_sub_circuit_name: str = "OutputDrivedCircuit",
         simulation_start_frequency: float = 1,
         simulation_stop_frequency: float = 2.45e9,
-        simulation_variation: Literal["dec", "oct", "lin"] = "lin",
-        number_of_points_of_simulation: int = 10,
+        simulation_variation: Literal["dec", "oct", "lin"] = "dec",
+        number_of_points_of_simulation: int = 1000,
     ) -> ScatteringParamers:
         scattering_parameters = ScatteringParamers()
 

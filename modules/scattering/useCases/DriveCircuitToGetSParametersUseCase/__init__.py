@@ -1,4 +1,5 @@
-from PySpice.Spice.Netlist import SubCircuit, Circuit
+from PySpice.Spice.Netlist import SubCircuit
+from modules.Circuit.entities.Circuit import Circuit
 from modules.scattering.entities.InputDrivedSubCircuit import InputDrivedSubCircuit
 from modules.scattering.entities.OutputSubCircuit import OutputCircuit
 from modules.scattering.useCases.DriveCircuitPortsUseCase import (

@@ -1,4 +1,6 @@
-from PySpice.Spice.Netlist import SubCircuit, Circuit
+from PySpice.Spice.Netlist import SubCircuit
+
+from modules.Circuit.entities.Circuit import Circuit
 
 
 class DriveCircuitPortsUseCase:

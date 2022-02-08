@@ -1,4 +1,5 @@
 from matplotlib import pyplot as plt
+from modules.Circuit.entities.LNASubCircuit import LNASubCircuit
 
 from modules.scattering.entities.TestSubCircuit import TestSubCircuit
 from modules.scattering.useCases.ExtractScatteringParametersUseCase import (
@@ -7,19 +8,19 @@ from modules.scattering.useCases.ExtractScatteringParametersUseCase import (
 from utils.ConvertToDB import convert_signal_to_db
 
 
-test_sub_circuit = TestSubCircuit(name="TestCircuit")
+test_sub_circuit = LNASubCircuit(name="TestCircuit")
 
 extract_scattering_parameters_use_case = ExtractScatteringParametersUseCase(
     sub_circuit=test_sub_circuit,
 )
 
 scattering_parameters = extract_scattering_parameters_use_case.execute(
-    simulation_start_frequency=1,
+    simulation_start_frequency=1e9,
     simulation_stop_frequency=3e9,
-    number_of_points_of_simulation=100,
+    number_of_points_of_simulation=1000,
 )
 
-S11_in_db = convert_signal_to_db(signal=scattering_parameters.S11)
+S11_in_db = convert_signal_to_db(signal=scattering_parameters.S12)
 plt.plot(scattering_parameters.frequency, S11_in_db)
 plt.title("Scalar Logarithmic Gain")
 plt.grid()
