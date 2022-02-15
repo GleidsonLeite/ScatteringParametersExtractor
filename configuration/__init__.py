@@ -11,6 +11,6 @@ class Configuration:
 
 configuration = Configuration(
     libraries_to_include=[
-        "/home/gleidson/skywater-pdk/libraries/sky130_fd_pr/latest/models/corners/tt.spice"
+        "/skywater-pdk/libraries/sky130_fd_pr/latest/models/corners/tt.spice"
     ]
 )

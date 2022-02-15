@@ -4,9 +4,6 @@ from modules.Circuit.entities.LNASubCircuit import LNASubCircuit
 from modules.scattering.useCases.ExtractScatteringParametersUseCase import (
     ExtractScatteringParametersUseCase,
 )
-from modules.scattering.useCases.PlotScatteringParameters import (
-    PlotScatteringParametersUseCase,
-)
 
 
 test_sub_circuit = LNASubCircuit(name="TestCircuit")
@@ -21,6 +18,4 @@ scattering_parameters = extract_scattering_parameters_use_case.execute(
     number_of_points_of_simulation=1000,
 )
 
-PlotScatteringParametersUseCase.execute(
-    scattering_parameters=scattering_parameters,
-)
+print(scattering_parameters)
