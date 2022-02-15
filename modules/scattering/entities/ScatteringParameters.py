@@ -3,7 +3,7 @@ import numpy as np
 
 
 @dataclass
-class ScatteringParamers:
+class ScatteringParameters:
     frequency: np.ndarray = None
     S11: np.ndarray = None
     S12: np.ndarray = None

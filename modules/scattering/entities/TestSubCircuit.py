@@ -11,12 +11,11 @@ class TestSubCircuit(SubCircuit):
     ) -> None:
         super().__init__(name, *nodes)
 
-        self.R("R0", nodes[0], "P1", 15)
-        self.R("R1", "P1", nodes[2], 500)
-        self.R("R2", "P1", nodes[1], 36)
-        self.C("C0", nodes[1], nodes[2], 50e-15)
-        self.R("R3", nodes[1], nodes[2], 200)
-        self.L("L0", nodes[1], nodes[2], 645e-12)
+        input_port, output_port, gnd = nodes
+
+        self.C("C0", input_port, gnd, 318.3e-9)
+        self.L("L0", input_port, output_port, 1.592e-3)
+        self.C("C1", output_port, gnd, 318.3e-9)
 
 
 # Reference: https://electronics.stackexchange.com/questions/528557/deriving-the-s-parameters-different-matched-loads-possible

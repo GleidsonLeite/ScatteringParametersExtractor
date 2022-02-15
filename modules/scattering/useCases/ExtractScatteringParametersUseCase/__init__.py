@@ -4,8 +4,8 @@ from PySpice.Spice.Netlist import SubCircuit
 from modules.scattering.useCases.DriveCircuitToGetSParametersUseCase import (
     DriveCircuitToGetSParametersUseCase,
 )
-from modules.scattering.useCases.ExtractScatteringParametersUseCase.ScatteringParameters import (
-    ScatteringParamers,
+from modules.scattering.entities.ScatteringParameters import (
+    ScatteringParameters,
 )
 from modules.simulator.UseCases.DestroyNGSharedInstanceUseCase import (
     DestroyNGSharedInstanceUseCase,
@@ -28,8 +28,8 @@ class ExtractScatteringParametersUseCase:
         simulation_stop_frequency: float = 2.45e9,
         simulation_variation: Literal["dec", "oct", "lin"] = "dec",
         number_of_points_of_simulation: int = 1000,
-    ) -> ScatteringParamers:
-        scattering_parameters = ScatteringParamers()
+    ) -> ScatteringParameters:
+        scattering_parameters = ScatteringParameters()
 
         drive_circuit_to_get_s_parameters_use_case = (
             DriveCircuitToGetSParametersUseCase(sub_circuit=self.__sub_circuit)
@@ -63,7 +63,7 @@ class ExtractScatteringParametersUseCase:
             )
 
             input_response = analysis[input_point_name].as_ndarray()
-            output_response = analysis[input_point_name].as_ndarray()
+            output_response = analysis[output_point_name].as_ndarray()
 
             if is_in_first_loop:
                 scattering_parameters.S11 = 2 * input_response - 1

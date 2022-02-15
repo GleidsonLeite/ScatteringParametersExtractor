@@ -91,8 +91,6 @@ class LNASubCircuit(SubCircuit):
         self.C("CM2", "PM3", "OUT", 0.65e-12)
         self.C("CM3", "OUT", "GND", 4.7e-12)
 
-        self.R("Rload", "OUT", "GND", 1e9)
-
         self.V("VCC", "VCC", "GND", 1.8)
         self.V("VDD", "VDD", "GND", 1.8)
         self.V("VPOL2", "VPOL2", "GND", 0.53)

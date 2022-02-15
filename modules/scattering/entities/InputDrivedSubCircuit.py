@@ -7,18 +7,25 @@ class InputDrivedSubCircuit(SubCircuit):
         self,
         name: str,
         signal_amplitude: float,
+        dc_offset: float = 0,
+        signal_frequency: float = 1e3,
+        signal_magnitude: float = 1,
         resistance: float = 50,
-        capacitance: float = 100,
         nodes: List[str] = ["INP", "GND"],
     ):
         super().__init__(name, *nodes)
 
+        input_port, gnd = nodes
+
         self.SinusoidalVoltageSource(
             "signal",
             "SOUT",
-            nodes[1],
+            gnd,
+            dc_offset,
+            signal_magnitude,
+            0,
             signal_amplitude,
+            signal_frequency,
         )
 
-        self.R("R0", "SOUT", "ROUT", resistance)
-        self.C("C0", "ROUT", nodes[0], capacitance)
+        self.R("R0", "SOUT", input_port, resistance)

@@ -19,6 +19,7 @@ class DriveCircuitToGetSParametersUseCase(DriveCircuitPortsUseCase):
         circuit_title: str = "ScatteringWithInputDrived",
         input_drived_sub_circuit_name: str = "InputDrivedSubCircuit",
         output_sub_circuit_name: str = "OutputDrivedCircuit",
+        signal_amplitude: float = 1,
     ) -> Circuit:
 
         input_drived_sub_circuit = None
@@ -27,7 +28,7 @@ class DriveCircuitToGetSParametersUseCase(DriveCircuitPortsUseCase):
         if should_drive_input_port:
             input_drived_sub_circuit = InputDrivedSubCircuit(
                 name=input_drived_sub_circuit_name,
-                signal_amplitude=2,
+                signal_amplitude=signal_amplitude,
             )
 
             output_sub_circuit = OutputCircuit(
@@ -40,7 +41,7 @@ class DriveCircuitToGetSParametersUseCase(DriveCircuitPortsUseCase):
 
             output_sub_circuit = InputDrivedSubCircuit(
                 name=input_drived_sub_circuit_name,
-                signal_amplitude=2,
+                signal_amplitude=signal_amplitude,
             )
 
         circuit = super().execute(
